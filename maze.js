@@ -1,9 +1,23 @@
 /***EXERCISE 1***/
 var result;
 
-window.onload = function pageOpen() {
+window.onload = pageOpen;
+
+function getInfo() {
+	var bound;
+	bound = getElementById("boundary1")
+	bound.onmouseover = activateRed;
+}
+
+function activateRed() {
+	bound.classList.add("youlose");
+} 
+
+
+/***EXERCISE 2***/
+function pageOpen() {
 	result = "lose";
-	const begin = document.getElementById("start").onclick = letsBegin;
+	const begin = document.getElementById("start").onclick = onOurWay;
 	const finish = document.getElementById("end");
 	const theBoundaries = document.querySelectorAll(".boundary");
 	
@@ -14,18 +28,6 @@ window.onload = function pageOpen() {
     finish.onmouseover = weAreFinished;	
 }
 
-function getInfo() {
-	var bound;
-	bound = getElementById("boundary1")
-	bound.onmouseover = activateRed;
-}
-
-function activateRed() {
-	var bound;
-	bound.classList.add("youlose");
-}
-
-/***EXERCISE 2***/
 function letsBegin() {	
 	result = "win";
 	const theBoundaries = document.querySelectorAll(".boundary");
@@ -45,7 +47,7 @@ function popupMessage() {
 
 /***EXERCISE 4***/
 function onOurWay() {	
-	result = "false";
+	result = "lose";
 	document.getElementById("status").innerHTML = "Move your mouse over the "S" to begin.";
 	const theBoundaries = document.querySelectorAll(".boundary");
 	for (let c = 0; c < theBoundaries.length; c++) {
