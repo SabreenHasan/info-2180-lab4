@@ -1,54 +1,69 @@
+/***EXERCISE 1***/
+var result;
+
 window.onload = function pageOpen() {
-	var result = "lose";
-	document.getElementById("start").onclick = letsBegin;
-	/document.getElementById("end").onmouseover = weAreFinished;/
+	result = "lose";
+	const begin = document.getElementById("start").onclick = letsBegin;
+	const finish = document.getElementById("end");
+	const theBoundaries = document.querySelectorAll(".boundary");
+	
+	for (let c = 0; c < theBoundaries.length; c++) {
+       	theBoundaries[c].addEventListener("mouseover", letsBegin);
+    }	
+    betterNotCheat();
+    finish.onmouseover = weAreFinished;	
 }
 
 function getInfo() {
 	var bound;
 	bound = getElementById("boundary1")
-	bound.onmouseover = extra;
+	bound.onmouseover = activateRed;
 }
 
-function extra() {
-	var bounds;
+function activateRed() {
+	var bound;
 	bound.classList.add("youlose");
 }
 
-/function onOurWay() {	
-	const theBoundaries = document.querySelectorAll("boundary");
+/***EXERCISE 2***/
+function letsBegin() {	
+	result = "win";
+	const theBoundaries = document.querySelectorAll(".boundary");
 	for (let c = 0; c < theBoundaries.length; c++) {
 		theBoundaries[c].classList.add("youlose");
-		alert("got to this point");
 	}
-}/
+}
 
-function letsBegin() {	
-	const theBoundaries = document.querySelectorAll("boundary");
+/***EXERCISE 3***/
+function popupMessage() {
+	if (result == "win") {
+		alert("You lost! :(");
+	}else {
+		alert("You won! :)");
+	}
+}
+
+/***EXERCISE 4***/
+function onOurWay() {	
+	result = "false";
+	document.getElementById("status").innerHTML = "Move your mouse over the "S" to begin.";
+	const theBoundaries = document.querySelectorAll(".boundary");
 	for (let c = 0; c < theBoundaries.length; c++) {
-       	theBoundaries[c].addEventListener("onmouseover", onOurWay);
-    	alert("progress");
+       	theBoundaries[c].classList.remove("youlose");
     }	
 }
 
-/*function weAreFinished() {
-	var array = [3, 5, 7];
-	if (array.length > 0) {
-		hoverOver();
-		alert("Ooops you lost! Better luck next time!");
+/***EXERCISE 5***/
+function weAreFinished() {
+	if (result = "win") {
+		document.getElementById("status").innerHTML = "Ooops you lost! Better luck next time!";
 	}else {
-		noHover();
-		alert("CoNgRaTuLaTiOnS!! :p You WON!!");
+		document.getElementById("status").innerHTML = "CoNgRaTuLaTiOnS!! :p You WON!!";
 	}
 }
 
-function restart() {
-	var ans = confirm("Would you like to play again?")
-	if (ans == true) {
-		alert("We got this far")
-		ans.onclick = pageOpen
-	}else {
-		alert("Thanks for playing :)")
-	}
+/***EXERCISE 6***/
+function betterNotCheat() {
+	var game = document.getElementById("maze");
+	game.onmouseleave = letsBegin;
 }
-*/
